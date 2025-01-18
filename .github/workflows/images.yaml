@@ -33,7 +33,7 @@ jobs:
         - uBootRadxaCM3IO
         - uBootRadxaRock4
         - uBootRadxaRock4SE
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-24.04-arm
     steps:
     - name: Free disk space
       run: |
@@ -59,7 +59,7 @@ jobs:
         nix build -L -j4 .#${{ matrix.package }}
 
   build_example:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-24.04-arm
     needs: build_packages
     steps:
     - uses: actions/checkout@v3
@@ -82,7 +82,7 @@ jobs:
         nix build -L -j4 --accept-flake-config --override-input rockchip ..
 
   create_release:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-24.04-arm
     needs: [build_packages, build_example]
     steps:
     - uses: actions/checkout@v3
@@ -135,7 +135,7 @@ jobs:
         - RadxaCM3IO
         - RadxaRock4
         - RadxaRock4SE
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-24.04-arm
     steps:
     - name: Free disk space
       run: |
